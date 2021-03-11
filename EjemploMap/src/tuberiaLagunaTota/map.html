@@ -20,13 +20,39 @@
     </style>
     <script>
       let map;
-
+      const uluru = { lat: 5.5378, lng: -72.9307 };
+      const uluru2 = { lat: 5.5802, lng: -72.9664 };
       function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: -34.397, lng: 150.644 },
+          center: { lat: 5.5378, lng: -72.9307 },
           zoom: 8,
         });
+        
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+        
+        const marker2 = new google.maps.Marker({
+          position: uluru2,
+          map: map,
+        });
+        
+        const flightPlanCoordinates = [
+          { lat: 5.5378, lng: -72.9307 },
+          { lat: 5.5802, lng: -72.9664 },
+        ];
+        const flightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          geodesic: true,
+          strokeColor: "#FF0000",
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+        });
+        flightPath.setMap(map);
       }
+      
+      
     </script>
   </head>
   <body>

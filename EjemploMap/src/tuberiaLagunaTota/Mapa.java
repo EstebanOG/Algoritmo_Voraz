@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejemplomap;
+package tuberiaLagunaTota;
 //import com.teamdev.jxbrowser.browser.Browser;
 //import java.awt.BorderLayout;
 //import javax.swing.JFrame;
@@ -79,7 +79,7 @@ public class Mapa {
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
 
-            browser.navigation().loadUrl("C://Users/Usuario/Desktop/Algoritmo_Voraz/EjemploMap/src/ejemplomap/map.html");
+            browser.navigation().loadUrl("C://Users/Usuario/Desktop/Algoritmo_Voraz/EjemploMap/src/tuberiaLagunaTota/map.html");
         });
     }
 }
