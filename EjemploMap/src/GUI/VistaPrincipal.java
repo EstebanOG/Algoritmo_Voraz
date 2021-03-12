@@ -29,7 +29,8 @@ public class VistaPrincipal extends JFrame implements ActionListener {
         this.setLayout(null);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         this.setVisible(true);
-        mapa = new PanelMapa();
+        
+    
         initComponents();
     }
 
@@ -62,6 +63,8 @@ public class VistaPrincipal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnMostrarMapa) {
+            mapa = new PanelMapa();
+            mapa.ubicarPoblaciones(tabla.getMatrizDatos());
             mapa.setVisible(true);
         }
 

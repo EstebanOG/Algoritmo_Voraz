@@ -27,7 +27,7 @@ public class PanelTabla extends JPanel {
     public PanelTabla() {
 
         // Datos de las poblaciones
-        String[] nombresColumnas = {"Poblacion", "Altura", "Altitud", "Latitud", "Distancia", "Penalización", "Costo"};
+        String[] nombresColumnas = {"Poblacion", "Altura", "Latitud", "Longitud", "Distancia", "Penalización", "Costo"};
         String[][] datos = {
             {"TOTA", "3015", "5.5378", "-72.9307", "N.R", "N.R", "N.R"},
             {"CHAMEZA", "1110", "5.217", "-72.883", "N.R", "N.R", "N.R"},
@@ -108,7 +108,7 @@ public class PanelTabla extends JPanel {
         for (i = 0; i < fila; i++) {
             table.setValueAt(matrizDatos[i][4], i, 4);
         }
-        imprimirMatriz();
+        //imprimirMatriz();
     }
     
     public String[][] getMatrizDatos() {

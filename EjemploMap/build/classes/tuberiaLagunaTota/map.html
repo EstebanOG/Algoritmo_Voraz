@@ -21,20 +21,78 @@
     <script>
       let map;
       const uluru = { lat: 5.5378, lng: -72.9307 };
-      const uluru2 = { lat: 5.5802, lng: -72.9664 };
+      const uluru2 = { lat: 5.217, lng: -72.883 };
+      const uluru3 = { lat: 5.66877, lng: -72.994 };
+      const uluru4 = { lat: 5.77894, lng: -73.1185 };
+      const uluru5 = { lat: 5.817, lng: -73.033 };
+      const uluru6 = { lat: 5.74615, lng: -73.0011 };
+      const uluru7 = { lat: 5.6125, lng: -72.978611 };
+      const uluru8 = { lat: 5.7158333333333, lng: -72.933333333333 };
+      const uluru9 = { lat: 5.7697222, lng: -72.94 };
+      const uluru10 = { lat: 5.5802, lng: -72.9664 };
+      const uluru11 = { lat: 5.7256, lng: -72.8498 };
+      const uluru12 = { lat: 5.5202, lng: -72.8837 };
+      const uluru13 = { lat: 5.5587, lng: -73.0502 };
+      
       function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 5.5378, lng: -72.9307 },
           zoom: 8,
         });
         
-        const marker = new google.maps.Marker({
+      
+      const marker = new google.maps.Marker({
           position: uluru,
           map: map,
         });
         
         const marker2 = new google.maps.Marker({
           position: uluru2,
+          map: map,
+        });
+        
+        const marker3 = new google.maps.Marker({
+          position: uluru3,
+          map: map,
+        });
+        const marker4 = new google.maps.Marker({
+          position: uluru4,
+          map: map,
+        });
+        const marker5 = new google.maps.Marker({
+          position: uluru5,
+          map: map,
+        });
+        const marker6 = new google.maps.Marker({
+          position: uluru6,
+          map: map,
+        });
+        const marker7 = new google.maps.Marker({
+          position: uluru7,
+          map: map,
+        });
+        const marker8 = new google.maps.Marker({
+          position: uluru8,
+          map: map,
+        });
+        const marker9 = new google.maps.Marker({
+          position: uluru9,
+          map: map,
+        });
+        const marker10 = new google.maps.Marker({
+          position: uluru10,
+          map: map,
+        });
+        const marker11 = new google.maps.Marker({
+          position: uluru11,
+          map: map,
+        });
+        const marker12 = new google.maps.Marker({
+          position: uluru12,
+          map: map,
+        });
+        const marker13 = new google.maps.Marker({
+          position: uluru13,
           map: map,
         });
         
@@ -49,7 +107,7 @@
           strokeOpacity: 1.0,
           strokeWeight: 2,
         });
-        flightPath.setMap(map);
+        flightPath.setMap(map);     
       }
       
       
