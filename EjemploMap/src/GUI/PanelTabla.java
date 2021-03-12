@@ -6,6 +6,7 @@
 package GUI;
 
 import Logica.CalcularDistancias;
+import Logica.Kruskal;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,6 +21,7 @@ public class PanelTabla extends JPanel {
 
     private JScrollPane scrollPane;
     private JTable table;
+    private Kruskal kruskal;
     private DefaultTableModel dtm;
     public static String[][] matrizDatos;
     private CalcularDistancias calDistancias = null;
@@ -40,7 +42,7 @@ public class PanelTabla extends JPanel {
             {"NOBSA", "2593", "5.7697222222222", "-72.94", "N.R", "N.R", "N.R"},
             {"CUITIVA", "2750", "5.5802", "-72.9664", "N.R", "N.R", "N.R"},
             {"MONGUI", "2900", "5.7256", "-72.8498", "N.R", "N.R", "N.R"},
-            {"AQUITAMA", "3030", "5.5202", "-72.8837", "N.R", "N.R", "N.R"},
+            {"AQUITANIA", "3030", "5.5202", "-72.8837", "N.R", "N.R", "N.R"},
             {"PESCA", "3910", "5.5587", "-73.0502", "N.R", "N.R", "N.R"}};
 
         this.dtm = new DefaultTableModel(datos, nombresColumnas);
@@ -48,6 +50,7 @@ public class PanelTabla extends JPanel {
         table.setPreferredScrollableViewportSize(new Dimension(530, 400));
         convertirAMatriz();
         calcularDistanciasCostos();
+        crearParejas();
         //imprimirMatriz();
         scrollPane = new JScrollPane(table);
         this.add(scrollPane);
@@ -105,12 +108,23 @@ public class PanelTabla extends JPanel {
     private void actualizarTable(){
         //Se actualiza la tabla con las nuevas distancias
         int fila = table.getRowCount(), i = 0, j = 0;
+        double distancia = 0;
         for (i = 0; i < fila; i++) {
             table.setValueAt(matrizDatos[i][4], i, 4);
+            if(Double.parseDouble(matrizDatos[i][1])<= Double.parseDouble(matrizDatos[0][1])){
+                matrizDatos[i][5] = 0+"";
+                table.setValueAt(matrizDatos[i][5], i, 5);
+                
+                matrizDatos[i][6] = matrizDatos[i][4];
+                table.setValueAt(matrizDatos[i][6], i, 6);
+            }
         }
         //imprimirMatriz();
     }
     
+    private void crearParejas(){
+       kruskal = new Kruskal(matrizDatos);
+    }
     public String[][] getMatrizDatos() {
         return matrizDatos;
     }
