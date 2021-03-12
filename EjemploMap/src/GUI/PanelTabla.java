@@ -45,14 +45,18 @@ public class PanelTabla extends JPanel {
             {"AQUITANIA", "3030", "5.5202", "-72.8837", "N.R", "N.R", "N.R"},
             {"PESCA", "3910", "5.5587", "-73.0502", "N.R", "N.R", "N.R"}};
 
+        // Se crea JTable
         this.dtm = new DefaultTableModel(datos, nombresColumnas);
         table = new JTable(dtm);
         table.setPreferredScrollableViewportSize(new Dimension(530, 400));
+        scrollPane = new JScrollPane(table);
+        
+        
         convertirAMatriz();
         calcularDistanciasCostos();
         crearParejas();
         //imprimirMatriz();
-        scrollPane = new JScrollPane(table);
+        
         this.add(scrollPane);
         this.setBounds(0, 90, 600, 500);
         this.setVisible(true);
@@ -66,7 +70,7 @@ public class PanelTabla extends JPanel {
 
     private void convertirAMatriz() {
         
-        // Convertir los datos a una matriz de String
+        // Convertir los datos del JTable a una matriz de String
         matrizDatos = new String[table.getRowCount()][table.getColumnCount()];
         int fila1 = table.getRowCount();
         int col1 = table.getColumnCount();
@@ -74,8 +78,6 @@ public class PanelTabla extends JPanel {
 
         for (i = 0; i < fila1; i++) {
             for (j = 0; j < col1; j++) {
-//                System.out.println(i);
-//                System.out.println(j);
                 matrizDatos[i][j] = (String) table.getValueAt(i, j);
             }
         }
@@ -106,7 +108,7 @@ public class PanelTabla extends JPanel {
     }
     
     private void actualizarTable(){
-        //Se actualiza la tabla con las nuevas distancias
+        //Se actualiza la tabla con los nuevos datos
         int fila = table.getRowCount(), i = 0, j = 0;
         double distancia = 0;
         for (i = 0; i < fila; i++) {
@@ -117,12 +119,19 @@ public class PanelTabla extends JPanel {
                 
                 matrizDatos[i][6] = matrizDatos[i][4];
                 table.setValueAt(matrizDatos[i][6], i, 6);
+            }else{
+                matrizDatos[i][5] = calDistancias.calcularPenalizacion(Double.parseDouble(matrizDatos[i][1]), Double.parseDouble(matrizDatos[i][4]))+"";
+                table.setValueAt(matrizDatos[i][5], i, 5);
+                
+                matrizDatos[i][6] = calDistancias.calcularCosto(Double.parseDouble(matrizDatos[i][4]), Double.parseDouble(matrizDatos[i][5]))+"";
+                table.setValueAt(matrizDatos[i][6], i, 6);
             }
         }
         //imprimirMatriz();
     }
     
     private void crearParejas(){
+       // Se instancia la un objeto de la clase Kruskal
        kruskal = new Kruskal(matrizDatos);
     }
     public String[][] getMatrizDatos() {

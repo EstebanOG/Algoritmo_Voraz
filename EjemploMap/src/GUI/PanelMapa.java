@@ -9,11 +9,10 @@ import com.teamdev.jxbrowser.browser.Browser;
 import com.teamdev.jxbrowser.engine.Engine;
 import com.teamdev.jxbrowser.engine.EngineOptions;
 import static com.teamdev.jxbrowser.engine.RenderingMode.HARDWARE_ACCELERATED;
-import com.teamdev.jxbrowser.js.JsFunction;
-import com.teamdev.jxbrowser.js.JsObject;
 import com.teamdev.jxbrowser.view.swing.BrowserView;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -52,35 +51,41 @@ public class PanelMapa extends JFrame {
             });
 
             this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-
             this.add(view);
-
             this.setBounds(0, 0, 600, 500);
             this.setVisible(true);
             this.setTitle("Mapa");
-            browser.navigation().loadUrl("C://Users/Usuario/Desktop/Algoritmo_Voraz/EjemploMap/src/tuberiaLagunaTota/map.html");
 
-//browser.settings().enableJavaScript();
-            //browser.frames().get(0).executeJavaScript(string)
-            //executeJavaScript("document.title");
+            // Creamos un objeto file para obtener la ruta del archivo map.html
+            File f = new File("src/tuberiaLagunaTota/map.html");
+            browser.navigation().loadUrl(f.getAbsolutePath());
+//          browser.navigation().loadUrl("C://Users/Usuario/Desktop/Algoritmo_Voraz/EjemploMap/src/tuberiaLagunaTota/map.html");
+
         });
     }
 
     public void ubicarPoblaciones(String[][] matrizDatos) {
-//        for(int i = 0; i < matrizDatos.length;i++){
+
+        //Lógica para marcar la ubicación de las poblaciones 
+        /*
+        for(int i = 0; i < matrizDatos.length;i++){
         System.out.println(matrizDatos[0][2]);
         JsObject document = browser.frames().get(0).executeJavaScript("document");
-//        JsObject write = document.asObject().getProperty("write");
-//        write.asFunction().invoke(document.asObject(), "<html><body>Hello</body></html>");
-//            JsFunction pintar = browser.frames().get(0).executeJavaScript("document");
-//            JsObject window = browser.frames().get(0).executeJavaScript("const myLatlng = {lat:"+matrizDatos[0][2]+",lng:"+matrizDatos[0][3]+"};\n" +
-//                       "const marker = new google.maps.Marker({\n" +
-//                       "    position: myLatlng,\n" +
-//                       "    map: map,\n" +
-//                       "});");
+        JsObject write = document.asObject().getProperty("write");
+        write.asFunction().invoke(document.asObject(), "<html><body>Hello</body></html>");
+            JsFunction pintar = browser.frames().get(0).executeJavaScript("document");
+            JsObject window = browser.frames().get(0).executeJavaScript("const myLatlng = {lat:"+matrizDatos[0][2]+",lng:"+matrizDatos[0][3]+"};\n" +
+                       "const marker = new google.maps.Marker({\n" +
+                       "    position: myLatlng,\n" +
+                       "    map: map,\n" +
+                       "});");
 
-        //System.out.println(window);
-//        }
-//    }
+        System.out.println(window);
+        }
+    }*/
+    }
+
+    public void marcarCaminos() {
+        // Lógica para marcar los caminos del grafo
     }
 }

@@ -5,8 +5,6 @@
  */
 package Logica;
 
-import java.util.Arrays;
-
 /**
  *
  * @author Usuario
@@ -16,7 +14,7 @@ public class CalcularDistancias {
     private String[][] matrizDatos;
 
     private double earthRadius = 6371, lon1, lat1,
-            lon2, lat2; // kms
+            lon2, lat2, penalizacion,alturaTota;
     private Double[] coordenadasTota;
     
     public CalcularDistancias(){
@@ -27,7 +25,8 @@ public class CalcularDistancias {
         coordenadasTota = new Double[2];
         coordenadasTota[0] = Double.parseDouble(matrizDatos[0][2]);
         coordenadasTota[1] = Double.parseDouble(matrizDatos[0][3]);
-
+        
+        this.alturaTota = Double.parseDouble(matrizDatos[0][1]);
         int fila = matrizDatos.length, i = 0, j = 0;
         for (i = 0; i < fila; i++) {
             lat1 = Math.toRadians(coordenadasTota[0]);
@@ -77,7 +76,17 @@ public class CalcularDistancias {
         return distanceInMeters;
 
     }
-
+    
+    public double calcularPenalizacion(double alturaPoblacion, double distancia){
+        
+        penalizacion = (distancia*5/100) * (alturaPoblacion - alturaTota);
+        return penalizacion;
+    }
+    
+    public double calcularCosto(double distancia, double penalizacion){
+        return distancia + penalizacion;
+    }
+    
     public String[][] getMatrizDatos() {
         return matrizDatos.clone();
     }
