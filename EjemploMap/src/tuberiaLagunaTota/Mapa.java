@@ -14,6 +14,7 @@ import GUI.VistaPrincipal;
 public class Mapa {
 
     public static void main(String[] args) {
+        // Se instancia un objeto de la clase VistaPrincipal
         VistaPrincipal vp = new VistaPrincipal();
     }
 }
