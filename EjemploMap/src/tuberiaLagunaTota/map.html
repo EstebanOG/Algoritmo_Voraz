@@ -19,265 +19,54 @@
       }
     </style>
     <script>
+      var puntos = [[5.5378,-72.9307],[5.217,-72.883],[5.66877, -72.994],[5.77894,-73.1185],[5.817,-73.033]
+      ,[5.74615, -73.0011],[5.6125, -72.978611],[5.7158333333333,-72.933333333333],[5.7697222,-72.94],[5.5802,-72.9664]
+      ,[5.7256,-72.8498],[5.5202,-72.8837],[5.5587,-73.0502]];
+
+      var solucion = [[6,9],[0,11],[7,8],[0,9],[2,6],[5,8],[2,7],[4,5],[7,10],[9,12],[3,4],[1,11]];
+
+      var coordenadas=[];
+      var coordenada = {};
+
+      for(var i = 0; i < puntos.length; i++){
+        coordenadas.push({
+          "lat" : Number.parseFloat(puntos[i][0]),
+          "lng" : Number.parseFloat(puntos[i][1])
+        });
+      }
+
       let map;
-      const uluru = { lat: 5.5378, lng: -72.9307 };
-      const uluru2 = { lat: 5.217, lng: -72.883 };
-      const uluru3 = { lat: 5.66877, lng: -72.994 };
-      const uluru4 = { lat: 5.77894, lng: -73.1185 };
-      const uluru5 = { lat: 5.817, lng: -73.033 };
-      const uluru6 = { lat: 5.74615, lng: -73.0011 };
-      const uluru7 = { lat: 5.6125, lng: -72.978611 };
-      const uluru8 = { lat: 5.7158333333333, lng: -72.933333333333 };
-      const uluru9 = { lat: 5.7697222, lng: -72.94 };
-      const uluru10 = { lat: 5.5802, lng: -72.9664 };
-      const uluru11 = { lat: 5.7256, lng: -72.8498 };
-      const uluru12 = { lat: 5.5202, lng: -72.8837 };
-      const uluru13 = { lat: 5.5587, lng: -73.0502 };
       
+      function marcarPuntos(c){
+          new google.maps.Marker({
+            position : c,
+            map: map
+          });
+      }
+
+      function dibujarCamino(c1, c2){
+        new google.maps.Polyline({
+          path: [c1,c2],
+          geodesic: true,
+          strokeColor: "#FF0000",
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+        }).setMap(map);
+      }
+
       function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: 5.5378, lng: -72.9307 },
+          center: coordenadas[0],
           zoom: 8,
         });
-        
-      
-      const marker = new google.maps.Marker({
-          position: uluru,
-          map: map,
-        });
-        
-        const marker2 = new google.maps.Marker({
-          position: uluru2,
-          map: map,
-        });
-        
-        const marker3 = new google.maps.Marker({
-          position: uluru3,
-          map: map,
-        });
-        const marker4 = new google.maps.Marker({
-          position: uluru4,
-          map: map,
-        });
-        const marker5 = new google.maps.Marker({
-          position: uluru5,
-          map: map,
-        });
-        const marker6 = new google.maps.Marker({
-          position: uluru6,
-          map: map,
-        });
-        const marker7 = new google.maps.Marker({
-          position: uluru7,
-          map: map,
-        });
-        const marker8 = new google.maps.Marker({
-          position: uluru8,
-          map: map,
-        });
-        const marker9 = new google.maps.Marker({
-          position: uluru9,
-          map: map,
-        });
-        const marker10 = new google.maps.Marker({
-          position: uluru10,
-          map: map,
-        });
-        const marker11 = new google.maps.Marker({
-          position: uluru11,
-          map: map,
-        });
-        const marker12 = new google.maps.Marker({
-          position: uluru12,
-          map: map,
-        });
-        const marker13 = new google.maps.Marker({
-          position: uluru13,
-          map: map,
-        });
-        
-        const flightPlanCoordinates = [
-          { lat: 5.6126, lng: -72.978611 },
-          { lat: 5.5802, lng: -72.9664 },
-        ];
-        
-        
-        const flightPath = new google.maps.Polyline({
-          path: flightPlanCoordinates,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath.setMap(map);     
-      
-      
-      const flightPlanCoordinates2 = [
-          { lat: 5.5378, lng: -72.9307 },
-          { lat: 5.5202, lng: -72.8837 },
-        ];
-        
-        
-        const flightPath2 = new google.maps.Polyline({
-          path: flightPlanCoordinates2,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath2.setMap(map);     
-      
-      
-      const flightPlanCoordinates3 = [
-          { lat: 5.7158333, lng: -72.933333 },
-          { lat: 5.7697222, lng: -72.94 },
-        ];
-        
-        
-        const flightPath3 = new google.maps.Polyline({
-          path: flightPlanCoordinates3,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath3.setMap(map);     
-      
-      
-      const flightPlanCoordinates4 = [
-          { lat: 5.5378, lng: -72.9307 },
-          { lat: 5.5802, lng: -72.9664 },
-        ];
-        
-        
-        const flightPath4 = new google.maps.Polyline({
-          path: flightPlanCoordinates4,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath4.setMap(map);
 
-        const flightPlanCoordinates5 = [
-          { lat: 5.66877, lng: -72.994 },
-          { lat: 5.6125, lng: -72.978611 },
-        ];
-        
-        
-        const flightPath5 = new google.maps.Polyline({
-          path: flightPlanCoordinates5,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
+        coordenadas.forEach(c => {
+          marcarPuntos(c)
         });
-
-        flightPath5.setMap(map);
-        const flightPlanCoordinates6 = [
-          { lat: 5.74615, lng: -73.0011 },
-          { lat: 5.7697222, lng: -72.94 },
-        ];
         
-        
-        const flightPath6 = new google.maps.Polyline({
-          path: flightPlanCoordinates6,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
+        solucion.forEach(s => {
+          dibujarCamino(coordenadas[s[0]],coordenadas[s[1]]);
         });
-        flightPath6.setMap(map);
-        
-        const flightPlanCoordinates7 = [
-          { lat: 5.66877, lng: -72.994 },
-          { lat: 5.7158333, lng: -72.933333 },
-        ];
-        
-        
-        const flightPath7 = new google.maps.Polyline({
-          path: flightPlanCoordinates7,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath7.setMap(map);  
-
-        const flightPlanCoordinates8 = [
-          { lat: 5.817, lng: -73.033 },
-          { lat: 5.74615, lng: -73.0011 },
-        ];
-        
-        
-        const flightPath8 = new google.maps.Polyline({
-          path: flightPlanCoordinates8,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath8.setMap(map);
-        
-        const flightPlanCoordinates9 = [
-          { lat: 5.7158333, lng: -72.933333 },
-          { lat: 5.7256, lng: -72.8498 },
-        ];
-        
-        
-        const flightPath9 = new google.maps.Polyline({
-          path: flightPlanCoordinates9,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath9.setMap(map);
-
-        const flightPlanCoordinates10 = [
-          { lat: 5.5802, lng: -72.9664 },
-          { lat: 5.5587, lng: -73.0502 },
-        ];
-        
-        
-        const flightPath10 = new google.maps.Polyline({
-          path: flightPlanCoordinates10,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath10.setMap(map);
-
-        const flightPlanCoordinates11 = [
-          { lat: 5.77894, lng: -73.1185 },
-          { lat: 5.817, lng: -73.033 },
-        ];
-        
-        
-        const flightPath11 = new google.maps.Polyline({
-          path: flightPlanCoordinates11,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath11.setMap(map);
-
-        const flightPlanCoordinates12 = [
-          { lat: 5.217, lng: -72.883 },
-          { lat: 5.5202, lng: -72.8837 },
-        ];
-        
-        
-        const flightPath12 = new google.maps.Polyline({
-          path: flightPlanCoordinates12,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath12.setMap(map);
       }
       
 
